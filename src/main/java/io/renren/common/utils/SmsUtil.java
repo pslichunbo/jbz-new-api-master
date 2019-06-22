@@ -28,6 +28,12 @@ public class SmsUtil {
     static final String accessKeyId = "LTAIVag1nR0MhcPz";
     static final String accessKeySecret = "vnbkjYjIZncdgxtMGtcHQCckTs1xA7";
 
+//    public static void main(String[] args) {
+//        SendSmsResponse sendSmsResponse = SmsUtil.sendSms("123456", "13693677468");
+//        System.out.println("返回值+++++"+sendSmsResponse);
+//    }
+
+
     public static SendSmsResponse sendSms(String code, String mobile) throws ClientException {
 
         //可自助调整超时时间
