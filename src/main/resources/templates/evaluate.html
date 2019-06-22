@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-CN">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>设备评估</title>
+
+	<link rel="stylesheet" href="/css/css/bootstrap.css"/>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+			color: #83857F;
+		}
+		.max-width{
+			width: 100%;
+			margin-top: 10%;
+		}
+		.choose-box {
+			width: 96%;
+			margin-left: 2%;
+		}
+		.form-control{
+			float: left;
+			width: 48%;
+			margin-left: 1%;
+		}
+		#ri_qi,#xiao_shi {
+			margin-top: 1em;
+			width: 48%;
+			float: left;
+			margin-left: 1%;
+		}
+		.btn-warning{
+			margin-top: 3em;
+		}
+		.gei-info{
+			width: 30%;
+			margin:  0px auto;
+			padding-top: 2em;
+		}
+		.ping_gu {
+			display: inline-block;
+			width: 90%;
+			height: auto;
+			margin-top: 2em;
+			margin-left: 5%;
+		}
+	</style>
+
+
+</head>
+<body style="height: auto;">
+<div class="max-width">
+	<div class="choose-box">
+		<select class="form-control" id="ji_xing">
+			<option selected="selected" disabled="disabled">请选择机型</option>
+			<option>挖掘机</option>
+		</select>
+
+		<select class="form-control" id="pin_pai">
+			<option  selected="selected" disabled="disabled">请选择品牌</option>
+			<option>徐工</option>
+			<option>三一</option>
+			<option>山重</option>
+			<option>中联</option>
+			<option>龙工</option>
+			<option>沃尔沃</option>
+			<option>卡特</option>
+		</select>
+
+		<input type="number" class="form-control"  placeholder="请输入出厂年份" id="ri_qi"/>
+		<input type="number" class="form-control"  placeholder="请输入工作小时" id="xiao_shi"/>
+	</div>
+	<div class="gei-info"><button type="button" class="btn btn-warning" id="get_info">开始评估</button></div>
+</div>
+<div class="max-width">
+	<span class="ping_gu"></span>
+</div>
+
+<script src="/css/js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+
+
+    $("#get_info").on('click',function () {
+        var ji_xing_value = $("#ji_xing").val();
+        var pin_pai_value = $("#pin_pai").val();
+        var ri_qi_value = $("#ri_qi").val();
+        var xiao_shi_value = $("#xiao_shi").val();
+        console.log("1111",ji_xing_value,pin_pai_value,ri_qi_value,xiao_shi_value);
+        var obj = {
+            type:ji_xing_value,
+            brand:pin_pai_value,
+            time:ri_qi_value,
+            userTime:xiao_shi_value
+        }
+        console.log("obj",obj);
+        $.ajax({
+            type: "POST",
+            url: "/api/webapp/equipmentEvaluation",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj),
+            dataType: "string",
+            complete: function (xhr) {
+                if(xhr.status==200){
+                   $(".ping_gu").html(JSON.parse(xhr.responseText).data);
+
+                }else{
+
+                    alert("评估失败")
+                }
+            }
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

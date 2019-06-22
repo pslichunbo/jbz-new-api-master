@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="renderer" content="webkit"/>
+    <title>机帮主APP下载</title>
+    <link rel="stylesheet" href="/css/css/app.css"/>
+</head>
+<body class="success">
+<div class="page-wrap">
+    <div class="download">
+        <h3 class="entry-hd">立即下载机帮主APP</h3>
+        <p class="entry-con">即可获取使用资格</p>
+
+        <div class="download-btn">
+            <a href="/css/app/app-release.apk" id="J_weixin">
+                <img src="/css/img/android-btn.png" alt="安卓版下载"/>
+            </a>
+            <a href="https://www.pgyer.com/1aiM" class="android-btn">
+                <img  src="/css/img/ios-btn.png" alt="苹果版下载" />
+             </a>
+        </div>
+
+    </div>
+    <div class="app">
+        <img src="/css/img/jbz.jpg" alt="应用预览" width="80%" height="60%"/>
+        <p class="entry-con">下载完成后，请注册一个账号登录<br/>如有下载困难，请致电：<a href="tel:0871-66016862">0871-66016862</a>
+        </p>
+    </div>
+    <div class="footer-bg">
+        <p class="entry-con">注：微信用户请在右上角选择“在浏览器中打开”，再选择下载应用</p>
+    </div>
+</div>
+<div id="weixin-tip"><p><img src="/css/img/live_weixin.png" alt="微信打开"/><span id="close" title="关闭"
+                                                                               class="close">×</span></p></div>
+<script type="text/javascript">
+    var is_weixin = (function () {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    })();
+    window.onload = function () {
+        var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+        var btn = document.getElementById('J_weixin');
+        var btn_ = document.getElementById('J_weixin_');
+        var tip = document.getElementById('weixin-tip');
+        var close = document.getElementById('close');
+        if (is_weixin) {
+            btn.onclick = function (e) {
+                tip.style.height = winHeight + 'px';
+                tip.style.display = 'block';
+                return false;
+            };
+            close.onclick = function () {
+                tip.style.display = 'none';
+            };
+
+            btn_.onclick = function (e) {
+                tip.style.height = winHeight + 'px';
+                tip.style.display = 'block';
+                return false;
+            };
+            close.onclick = function () {
+                tip.style.display = 'none';
+            }
+
+        }
+    }
+</script>
+
+</body>
+</html>

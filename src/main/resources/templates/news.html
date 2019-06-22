@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>行业动态详情</title>
+		<link rel="stylesheet" href="/css/css/bootstrap.css"/>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				color: #83857F;
+			}	
+			
+			.max-width{
+				width: 100%;
+			}
+			
+			.user_title{
+				margin-top: 1em;
+			}
+			.user_title span{
+				display: inline-block;
+				width:94%;
+				height: 2em;
+				margin: 0px auto;
+				font-size: 1.5em;
+			}
+		
+		
+			.inner_border p{
+				width: 94%;
+				margin: 0px auto;
+				margin-bottom: 2em;
+				margin-top: 2em;
+			}
+			
+			
+		</style>
+	</head>
+	<body style="height: auto;">
+		<div class="max-width">
+			<div class="shop-box">
+				<div class="max-width user_title"><span class="text-center" th:utext="${industryInfo.title}"></span></div>
+				<span th:each="item : ${industryInfo.imageLinks}">
+					<img th:src="${item}" class="max-width"/>
+				</span>
+				<div class="inner_border">
+					<p th:utext="${industryInfo.content}">礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介礼品简介</p>
+				</div>
+
+			</div>
+		</div>
+		
+		
+	</body>
+</html>

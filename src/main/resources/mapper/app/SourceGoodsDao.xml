@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.SourceGoodsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.SourceGoodsEntity" id="sourceGoodsMap">
+        <result property="id" column="id"/>
+        <result property="startProvince" column="start_province"/>
+        <result property="startCity" column="start_city"/>
+        <result property="startCounty" column="start_county"/>
+        <result property="endProvince" column="end_province"/>
+        <result property="endCity" column="end_city"/>
+        <result property="endCounty" column="end_county"/>
+        <result property="startPointAddr" column="start_point_addr"/>
+        <result property="endPointAddr" column="end_point_addr"/>
+        <result property="startAddress" column="start_address"/>
+        <result property="endAddress" column="end_address"/>
+        <result property="cargoDescription" column="cargo_description"/>
+        <result property="tel" column="tel"/>
+        <result property="linkName" column="link_name"/>
+        <result property="state" column="state"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="urgent" column="urgent"/>
+        <result property="weight" column="weight"/>
+        <result property="clerkOrderingNum" column="clerk_ordering_num"/>
+        <result property="startLongitude" column="start_longitude"/>
+        <result property="startLatitude" column="start_latitude"/>
+        <result property="endLongitude" column="end_longitude"/>
+        <result property="endLatitude" column="end_latitude"/>
+        <result property="images" column="images"/>
+        <result property="goodsNumber" column="goods_number"/>
+
+
+
+    </resultMap>
+
+    <select id="conditionQuery" parameterType="Map" resultType="io.renren.modules.app.entity.SourceGoodsEntity">
+        select * from tb_source_goods
+        <where>
+            <if test="startAddress != null">
+                and start_address = ${startAddress}
+            </if>
+            <if test="endAddress != null">
+                and end_address = ${endAddress}
+            </if>
+            and user_id != ${userId}
+            and state = 0
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+        select count(*) FROM tb_source_goods
+        <where>
+            <if test="startAddress != null">
+                and start_address = ${startAddress}
+            </if>
+            <if test="endAddress != null">
+                and end_address = ${endAddress}
+            </if>
+            and user_id != ${userId}
+            and state = 0
+        </where>
+    </select>
+
+</mapper>

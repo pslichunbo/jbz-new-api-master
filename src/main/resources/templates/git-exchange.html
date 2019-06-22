@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>礼品兑换</title>
+		<link rel="stylesheet" href="/css/css/bootstrap.css"/>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				color: #83857F;
+			}	
+			.pull-left{
+				float: left;
+			}
+			.pull-right{
+				float: right;
+			}
+			.max-width{
+				width: 100%;
+			}
+			
+			.shop-box {
+				width: 96%;
+				margin-left: 2%;
+				margin-top: 2%;
+			}
+			ul li{
+				list-style: none;
+				margin-top:0.5em;
+				border-bottom: 1px solid #E1E1E8;
+			}
+			
+			span{
+				color: #FF7417;
+			}
+			.price{
+				margin-left: 5%;
+				margin-right: 10%;
+			}
+			.inner_border{
+				width: 100%;
+				min-height: 2em;
+				height: auto;
+				border-bottom: 1px solid #EEEEEE;
+				margin-bottom: 0.5em;
+			}
+			.inner_border p{
+				width: 90%;
+				margin: 0px auto;
+				margin-bottom: 2em;
+			}
+			label{
+				display: inline-block;
+			}
+			form{
+				width: 80%;
+				display: inline-block;
+				padding-left: 10%;
+			}
+			.btn{
+				width: 100%;
+				height: 3em;
+				
+			}
+			img{
+				width: 94%;
+				height:auto;
+				margin-left: 3%;
+				margin-top: 1em;
+			}
+		</style>
+
+	</head>
+	<body style="height: auto;">
+		<div class="max-width">
+			<div class="shop-box">
+				
+				<img th:src="${present.imageLink}" class="max-width"/>
+				<div class="max-width inner_border">
+					<div class="pull-left price">价格：<span th:utext="${present.price}">2000</span>金币</div>
+					<div class="pull-left price">库存：<span th:utext="${present.inventory}">123</span>件</div>
+				</div>
+				
+				<div class="inner_border"><b>礼品简介</b></div>
+
+				<div class="inner_border">
+					<p th:utext="${present.intro}"></p>
+				</div>
+				<div class="inner_border"><b><span>重要说明</span></b></div>
+				<div class="inner_border" th:utext="${present.importanceExplain}"></div>
+				<div class="inner_border"><b>收货地址</b></div>
+			</div>
+		</div>
+			
+		<form>
+			<div class="form-group">
+			   <label>姓名：</label>
+			   <input type="text" class="form-control" id="user_name" placeholder="请输入收货人姓名"/>
+			</div>
+			<div class="form-group">
+			   <label>电话：</label>
+			   <input type="number" class="form-control" id="user_phone" placeholder="请输入收货人电话号码"/>
+			</div>
+			<div class="form-group">
+			   <label>邮编：</label>
+			   <input type="number" class="form-control" id="you_bian" placeholder="请输入收货地址邮编"/>
+			</div>
+			<div class="form-group">
+			   <label>地址：</label>
+			   <input type="text" class="form-control" id="user_address" placeholder="请输入收货地址"/>
+			</div>
+		</form>
+		<button type="button" class="btn btn-warning" id="get_info">立即兑换</button>
+		<div style="display: none">
+			<span th:utext="${userId}" class="userId"></span>
+			<span th:utext="${present.id}" class="presentId"></span>
+			<span th:utext="${authToken}" class="authToken"></span>
+		</div>
+	</body>
+	<script type="text/javascript" src="/css/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+
+		$("#get_info").on('click',function () {
+            var user_name = $("#user_name").val();
+            var user_phone = $("#user_phone").val();
+            var you_bian = $("#you_bian").val();
+            var user_address = $("#user_address").val();
+            var user_id = $(".userId").html();
+            var present_id = $(".presentId").html();
+            var auth_token = $(".authToken").html();
+
+            console.log(user_name,user_phone,you_bian,user_address);
+		    console.log(user_name.length)
+		    console.log(user_phone.length)
+		    console.log(you_bian.length)
+		    console.log(user_address.length)
+            if(user_name.length === 0 || user_phone.length === 0 ||
+                you_bian.length === 0 || user_address.length === 0){
+                alert("请正确填写收货信息");
+                return;
+            }
+            var obj = {
+                id:0,
+                userId:user_id,
+                presentId:present_id,
+                address:user_address,
+                postCode:you_bian,
+                type:"COMPLETED",
+                userName:user_name,
+                userTel:user_phone,
+            }
+            console.log(obj);
+            $.ajax({
+                type: "POST",
+                url: "/api/conversionRecords",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(obj),
+                headers: {
+                    "X-Auth-Token":auth_token,
+                },
+                dataType: "string",
+                complete: function (xhr) {
+                    if(xhr.status==200){
+						alert("兑换成功")
+						window.location.reload();
+                    }else{
+                        alert("兑换失败")
+                    }
+                }
+            });
+        })
+
+
+
+
+
+
+
+	</script>
+</html>

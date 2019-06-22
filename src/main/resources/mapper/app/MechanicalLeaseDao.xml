@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.MechanicalLeaseDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.MechanicalLeaseEntity" id="mechanicalLeaseMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="leaseholdPrice" column="leasehold_price"/>
+        <result property="areaId" column="area_id"/>
+        <result property="status" column="status"/>
+        <result property="menuNextId" column="menu_next_id"/>
+        <result property="menuRootId" column="menu_root_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="descriptions" column="descriptions"/>
+        <result property="linkMan" column="link_man"/>
+        <result property="contactNumber" column="contact_number"/>
+        <result property="imagesUrl" column="images_url"/>
+        <result property="factoryTime" column="factory_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="workingLife" column="working_life"/>
+        <result property="tonnage" column="tonnage"/>
+        <result property="model" column="model"/>
+        <result property="useDays" column="use_days"/>
+
+    </resultMap>
+
+
+    <select id="conditionQuery" resultType="io.renren.modules.app.entity.MechanicalLeaseEntity">
+        select * from tb_mechanical_lease
+        <where>
+            <if test="menuRootId != null">
+                and menu_root_id = ${menuRootId}
+            </if>
+            <if test="menuNextId != null">
+                and menu_next_id = ${menuNextId}
+            </if>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+            <if test="workingLife != null">
+                and working_life = #{workingLife}
+            </if>
+        </where>
+        order by `create_time` desc
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+        select count(*) from tb_mechanical_lease
+        <where>
+            <if test="menuRootId != null">
+                and menu_root_id = ${menuRootId}
+            </if>
+            <if test="menuNextId != null">
+                and menu_next_id = ${menuNextId}
+            </if>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+            <if test="workingLife != null">
+                and working_life = #{workingLife}
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+
+</mapper>

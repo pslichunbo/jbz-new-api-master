@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.PartsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.PartsEntity" id="partsMap">
+        <result property="id" column="id"/>
+        <result property="partsName" column="parts_name"/>
+        <result property="partsModel" column="parts_model"/>
+        <result property="partsPrice" column="parts_price"/>
+        <result property="partsArea" column="parts_area"/>
+        <result property="partsPhone" column="parts_phone"/>
+        <result property="partsInfo" column="parts_info"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="menuRootId" column="menu_root_id"/>
+        <result property="menuNextId" column="menu_next_id"/>
+        <result property="partsPhoto" column="parts_photo"/>
+        <result property="linkMan" column="link_man"/>
+    </resultMap>
+
+    <select id="conditionQuery" resultType="io.renren.modules.app.entity.PartsEntity">
+        select * from tb_parts
+        <where>
+            <if test="menuRootId != null">
+                and menu_root_id = ${menuRootId}
+            </if>
+            <if test="menuNextId != null">
+                and menu_next_id = ${menuNextId}
+            </if>
+            <if test="brandId != null">
+                and brand_id in(${brandId})
+            </if>
+            <if test="areaId != null">
+                and parts_area = ${areaId}
+            </if>
+        </where>
+        order by create_time desc
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="java.lang.Integer">
+        select count(*) from tb_parts
+        <where>
+            <if test="menuRootId != null">
+                and menu_root_id = ${menuRootId}
+            </if>
+            <if test="menuNextId != null">
+                and menu_next_id = ${menuNextId}
+            </if>
+            <if test="brandId != null">
+                and brand_id in(${brandId})
+            </if>
+            <if test="areaId != null">
+                and parts_area = ${areaId}
+            </if>
+        </where>
+        order by create_time desc
+        limit ${pagenum},${pageSize}
+    </select>
+</mapper>

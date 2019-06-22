@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.MerchantDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.MerchantEntity" id="merchantMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="name" column="name"/>
+        <result property="linkMan" column="link_man"/>
+        <result property="linkTel" column="link_tel"/>
+        <result property="money" column="money"/>
+        <result property="areaSign" column="area_sign"/>
+        <result property="area" column="area"/>
+        <result property="address" column="address"/>
+        <result property="remark" column="remark"/>
+        <result property="stataDate" column="stata_date"/>
+        <result property="post" column="post"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="typeId" column="type_id"/>
+        <result property="countNum" column="count_num"/>
+        <result property="state" column="state"/>
+        <result property="userId" column="user_id"/>
+        <result property="lng" column="lng"/>
+        <result property="lat" column="lat"/>
+        <result property="distance" column="distance"/>
+        <result property="delSign" column="del_sign"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="labelId" column="label_id"/>
+    </resultMap>
+    <delete id="removeById" parameterType="io.renren.modules.app.entity.MerchantEntity">
+        delete from tb_merchant where `id` = #{id} and user_id = #{userId}
+    </delete>
+
+</mapper>

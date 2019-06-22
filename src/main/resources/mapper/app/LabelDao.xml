@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.LabelDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.LabelEntity" id="labelMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="typeId" column="type_id"/>
+        <result property="delSign" column="del_sign"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="state" column="state"/>
+        <result property="sortIndex" column="sort_index"/>
+        <result property="merchantId" column="merchant_id"/>
+    </resultMap>
+
+
+</mapper>

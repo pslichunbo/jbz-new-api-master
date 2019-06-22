@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.MachineDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.MachineEntity" id="machineMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="image" column="image"/>
+        <result property="info" column="info"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="propertyId" column="property_id"/>
+        <result property="menuRootId" column="menu_root_id"/>
+        <result property="menuNextId" column="menu_next_id"/>
+        <result property="price" column="price"/>
+        <result property="linkPhone" column="link_phone"/>
+        <result property="workingLife" column="working_life"/>
+        <result property="tonnage" column="tonnage"/>
+    </resultMap>
+
+
+    <select id="conditionQuery" resultType="io.renren.modules.app.entity.MachineEntity">
+        select * from tb_machine
+        <where>
+            and menu_root_id = ${menuRootId}
+            and menu_next_id = ${menuNextId}
+
+            <if test="start != null | end != null">
+                and price between ${start} and ${end}
+            </if>
+            <if test="brandId != null">
+                and brand_id in (${brandId})
+            </if>
+            <if test="propertyId != null">
+                and property_id = ${propertyId}
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+        select count(*) from tb_machine
+        <where>
+            and menu_root_id = ${menuRootId}
+            and menu_next_id = ${menuNextId}
+
+            <if test="start != null | end != null">
+                and price between ${start} and ${end}
+            </if>
+            <if test="brandId != null">
+                and brand_id in (${brandId})
+            </if>
+            <if test="propertyId != null">
+                and property_id = ${propertyId}
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>维修店详情</title>
+		
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				color: #83857F;
+			}	
+			.pull-left{
+				float: left;
+			}
+			.pull-right{
+				float: right;
+			}
+			.max-width{
+				width: 100%;
+			}
+			
+			.shop-box {
+				width: 96%;
+				margin-left: 2%;
+				margin-top: 2%;
+			}
+			ul li{
+				list-style: none;
+				margin-top:0.5em;
+				height:auto;
+				border-bottom: 1px solid #E1E1E8;
+			}
+			.red_font{
+				color: #FF7417;
+			}
+			
+			
+		</style>
+	</head>
+	<body style="height: auto;">
+		<div class="max-width">
+			
+			<div class="shop-box">
+				<span th:if="${store.storeImage != null}">
+					<img th:src="${store.storeImage}" class="max-width"/>
+				</span>
+				<ul class="max-width  pull-left ">
+					<li th:utext="${store.storeName}"></li>
+					<li >
+						<img src="/css/img/address.png" height="25" width="20"/>
+						<span th:utext="${store.storeAddress}"></span>
+					</li>
+					<li>
+						<span class="red_font">服务范围</span>
+						<span th:each="item : ${store.businessScope}">
+							<span th:utext="${item}"></span>
+						</span>
+					</li>
+				</ul>
+				<img src="img/head.png" />
+				
+				<div class="max-width">
+					<p><span class="red_font">店铺描述：</span></p>
+					<p th:each="item : ${store.storeBeautifulImage}">
+						<img th:src="${item}" class="max-width"/>
+					</p>
+				</div>
+				<div class="max-width">
+					<p th:utext="${store.storeInfo}"></p>
+
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+	</body>
+</html>

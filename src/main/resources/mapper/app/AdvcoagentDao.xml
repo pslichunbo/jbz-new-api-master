@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.AdvcoagentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.AdvcoagentEntity" id="advcoagentMap">
+        <result property="id" column="id"/>
+        <result property="jobId" column="job_id"/>
+        <result property="experience" column="experience"/>
+        <result property="salary" column="salary"/>
+        <result property="property" column="property"/>
+        <result property="advertiseNumber" column="advertise_number"/>
+        <result property="ageGroup" column="age_group"/>
+        <result property="sex" column="sex"/>
+        <result property="depict" column="depict"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="title" column="title"/>
+        <result property="areaId" column="area_id"/>
+        <result property="address" column="address"/>
+        <result property="company" column="company"/>
+        <result property="principal" column="principal"/>
+        <result property="phone" column="phone"/>
+        <result property="remark" column="remark"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+
+    <select id="conditionQuery" parameterType="map" resultType="io.renren.modules.app.entity.AdvcoagentEntity">
+        select * from tb_advcoagent
+        <where>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+            <if test="jobId != null">
+                and job_id =${jobId}
+            </if>
+            <if test="experience != null">
+                and experience like CONCAT ('%','${experience}','%')
+            </if>
+            <if test="salary != null">
+                and salary like CONCAT ('%','${salary}','%')
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+        select count(*) from  tb_advcoagent
+        <where>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+            <if test="jobId != null">
+                and job_id = ${jobId}
+            </if>
+            <if test="experience != null">
+                and experience like CONCAT ('%','${experience}','%')
+            </if>
+            <if test="salary != null">
+                and salary like CONCAT ('%','${salary}','%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

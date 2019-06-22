@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.OrderFormDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.OrderFormEntity" id="orderFormMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="tel" column="tel"/>
+        <result property="sourceGoodsId" column="source_goods_id"/>
+        <result property="state" column="state"/>
+        <result property="excInf" column="exc_inf"/>
+        <result property="delSign" column="del_sign"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="deleteTime" column="delete_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="arriveTime" column="arrive_time"/>
+        <result property="proposerNum" column="proposer_num"/>
+        <result property="goodsUserId" column="goods_user_id"/>
+        <result property="evaluate" column="evaluate"/>
+        <result property="remark" column="remark"/>
+
+    </resultMap>
+
+
+    <select id="proposerNum" resultType="int">
+        select count(*) from tb_order_form where source_goods_id = ${sourceGoodsId}
+    </select>
+
+    <update id="logicdelete" parameterType="string">
+        update tb_order_form set del_sign = 1 where id = ${id}
+    </update>
+
+    <update id="dispose" parameterType="io.renren.modules.app.entity.OrderFormEntity">
+        update tb_order_form set state = 3 where order_id = #{orderId}
+    </update>
+
+    <delete id="deletesp" parameterType="io.renren.modules.app.entity.OrderFormEntity">
+        delete  from tb_order_form where source_goods_id =${sourceGoodsId} and state in (1,2)
+    </delete>
+
+    <update id="updateWithId">
+        update tb_order_form set state = #{state} where id = #{id}
+    </update>
+
+</mapper>

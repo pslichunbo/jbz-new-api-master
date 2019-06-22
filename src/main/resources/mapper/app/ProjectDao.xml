@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.ProjectDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.ProjectEntity" id="projectMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="areaId" column="area_id"/>
+        <result property="images" column="images"/>
+        <result property="typeId" column="type_id"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="createTime" column="create_time"/>
+        <result property="contractor" column="contractor"/>
+        <result property="principal" column="principal"/>
+        <result property="principalAddr" column="principal_addr"/>
+        <result property="status" column="status"/>
+        <result property="projectBrief" column="project_brief"/>
+        <result property="userId" column="user_id"/>
+        <result property="continues" column="continues"/>
+        <result property="cost" column="cost"/>
+    </resultMap>
+    
+    <select id="conditionQuery" resultType="io.renren.modules.app.entity.ProjectEntity">
+        select * from tb_project
+        <where>
+            <if test="typeId != null">
+                and type_id = ${typeId}
+            </if>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+        </where>
+        order by
+        <choose>
+            <when test="sort != null">
+                create_time desc
+            </when>
+            <otherwise>
+                create_time desc
+            </otherwise>
+        </choose>
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+         select count(*) from tb_project
+        <where>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="areaId != null">
+
+                and area_id = #{areaId}
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+</mapper>

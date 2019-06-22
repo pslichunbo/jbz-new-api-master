@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>维修人详情</title>
+		<link rel="stylesheet" href="/css/css/bootstrap.css"/>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				color: #83857F;
+			}	
+			
+			.max-width{
+				width: 100%;
+			}
+			
+			.inner_border{
+				widows: 100%;
+				min-height: 2em;
+				height: auto;
+				border-bottom: 1px solid #EEEEEE;
+				margin-bottom: 0.5em;
+			}
+			.inner_border p{
+				width: 95%;
+				margin: 0px auto;
+				margin-bottom: 0.5em;
+				margin-top: 0.5em;
+			}
+			img{
+				margin-top: 1em;
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body style="height: auto;">
+		<div class="max-width">
+			<div class="shop-box">
+				<img src="img/shop.png" class="max-width"/>
+				<div class="inner_border">
+					<p>
+						工程开发：<span>150w</span>
+						<span style="margin-left: 2em;"></span>
+						时间：<span>2017年8月29日15:49:30</span>
+					</p>
+					
+				</div>
+
+				<div class="inner_border">
+					<p>
+						承包单位：<span>150w</span>
+						<span style="margin-left: 2em;"></span>
+						负责人：<span style="margin-left: 2em;">历史</span>
+					</p>
+				</div>
+
+				<div class="inner_border"><p>地址：</p></div>
+
+				<div class="inner_border"><p>项目详情：</p></div>
+
+			</div>
+		</div>
+		
+		<div id="">
+			<li id="call_ios"><a th:href="@{'tel:'+${teacher.teacherMobile}}">呼叫教练</a></li>
+            <li id="call_android"><input type="button" onclick="call_phone()" class="btn btn-info" value="呼叫教练"/></li>
+		</div>
+		
+		<script type="text/javascript">
+			alert(12)
+			var u = navigator.userAgent;
+	        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	
+			var android = document.getElementById("call_android");
+			var ios = document.getElementById("call_ios");
+	       
+	       if(isAndroid){
+	           android.style.display = "block";
+	           ios.style.display = "none"
+	        }
+	        
+	        if(isiOS){
+				android.style.display = "none";
+	           ios.style.display = "block"
+	        }
+	        
+	        function call_phone(){
+	      		window.android.call(phone);
+	    	}
+			
+		</script>
+	</body>
+</html>

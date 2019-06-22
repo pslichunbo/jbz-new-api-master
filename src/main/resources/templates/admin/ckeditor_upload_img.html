@@ -1,0 +1,5 @@
+<script th:inline="javascript" xmlns:th="http://www.thymeleaf.org">
+    var funcNum = [[${CKEditorFuncNum}]];
+    var url = [[${map.source_url}]];
+    window.parent.CKEDITOR.tools.callFunction(funcNum, url, "");
+</script>

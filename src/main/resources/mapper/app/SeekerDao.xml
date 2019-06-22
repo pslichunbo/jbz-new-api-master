@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.app.dao.SeekerDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.app.entity.SeekerEntity" id="seekerMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="areaId" column="area_id"/>
+        <result property="jobId" column="job_id"/>
+        <result property="experience" column="experience"/>
+        <result property="salary" column="salary"/>
+        <result property="photo" column="photo"/>
+        <result property="depict" column="depict"/>
+        <result property="createTime" column="create_time"/>
+        <result property="alterTime" column="alter_time"/>
+        <result property="phone" column="phone"/>
+        <result property="portrait" column="portrait"/>
+        <result property="specialty" column="specialty"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+    
+    <select id="conditionQuery" parameterType="map" resultType="io.renren.modules.app.entity.SeekerEntity">
+        select * from tb_seeker
+        <where>
+            <if test="jobId != null">
+              and job_id = ${jobId}
+            </if>
+            <if test="areaId != null">
+              and area_id = ${areaId}
+            </if>
+            <if test="salary != null">
+              and salary like CONCAT('%','${salary}','%')
+            </if>
+            <if test="experience != null">
+                and experience like CONCAT('%','${experience}','%')
+            </if>
+            <if test="userId != null">
+                and user_id != ${userId}
+            </if>
+        </where>
+        limit ${pagenum},${pageSize}
+    </select>
+
+    <select id="conditionQueryNum" resultType="int">
+        select count(*) from tb_seeker
+        <where>
+            <if test="jobId != null">
+                and job_id = ${jobId}
+            </if>
+            <if test="areaId != null">
+                and area_id = ${areaId}
+            </if>
+            <if test="salary != null">
+                and salary like CONCAT('%','${salary}','%')
+            </if>
+            <if test="experience != null">
+                and experience like CONCAT('%','${experience}','%')
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectByuserId" resultType="io.renren.modules.app.entity.SeekerEntity">
+        select * from tb_seeker where user_id =${userid}
+    </select>
+
+</mapper>

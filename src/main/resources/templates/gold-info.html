@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>金币小知识</title>
+    <style type="text/css">
+        .info_box{
+            width: 95%;
+            height: auto;
+            margin: 0px auto;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="info_box">
+    <div th:utext="${config.textVal}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>配件详情</title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				color: #83857F;
+			}	
+			.pull-left{
+				float: left;
+			}
+			.pull-right{
+				float: right;
+			}
+			.max-width{
+				width: 100%;
+			}
+			
+			.shop-box {
+				width: 96%;
+				margin-left: 2%;
+				margin-top: 2%;
+			}
+			ul li{
+				list-style: none;
+				margin-top:0.5em;
+				border-bottom: 1px solid #E1E1E8;
+			}
+			
+			.span_clolor{
+				color: #FF7417;
+			}
+			p{
+				margin: 5%;
+			}
+			.price{
+				margin-right: 20%;
+			}
+			.inner_border{
+				width: 100%;
+				height: auto;
+				border-bottom: 1px solid #EEEEEE;
+				margin-bottom: 0.5em;
+			}
+			
+			img{
+				width: 94%;
+				margin-left: 3%;
+				margin-left: 1em;
+			}
+
+		</style>
+	</head>
+	<body style="height: auto;">
+		<div class="max-width">
+			<div class="shop-box">
+
+				<div class="inner_border"><b><span class="span_clolor">基本信息</span></b></div>
+
+				<div class="inner_border max-width">
+					<p><b>名称</b>：<span th:utext="${parts.partsName}"></span></p>
+					<p><b>电话</b>：<span th:utext="${parts.partsPhone}"></span></p>
+					<p><b>品牌</b>：<span th:utext="${parts.commodityBrand.brandName}" class="price"></span> <b>价格</b>：<span  th:utext="${parts.partsPrice}"></span></p>
+					<p><b>公司名称</b>：<span th:utext="${parts.partsCompany}"></span></p>
+					<p><b>产地</b>：<span th:utext="${parts.partsArea}"></span></p>
+				</div>
+
+				<div class="inner_border"><b><span class="span_clolor">配件秀</span></b></div>
+				<div th:each="item : ${parts.partsPhoto}">
+					<img th:src="${item}"/>
+				</div>
+				<div class="inner_border max-width">
+					<p><span th:utext="${parts.partsInfo}"></span></p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

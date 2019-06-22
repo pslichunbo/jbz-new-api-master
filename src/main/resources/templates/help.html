@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+
+    <title>帮助</title>
+    <link rel="stylesheet" href="/css/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/css/help.css"/>
+
+    <style type="text/css">
+        a {
+             color: #555;
+            text-decoration: none;
+        }
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+            color: #337ab7;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+    </style>
+
+</head>
+<body>
+<article>
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs pull-left" role="tablist" id="left-nav">
+            <li role="presentation" class="active"><a href="#published" aria-controls="published" role="tab" data-toggle="tab">发布中</a></li>
+            <li role="presentation"><a href="#agreeing" aria-controls="agreeing" role="tab" data-toggle="tab">待同意</a></li>
+            <li role="presentation"><a href="#unagree" aria-controls="unagree" role="tab" data-toggle="tab">拒绝</a></li>
+            <li role="presentation"><a href="#shipmenting" aria-controls="shipmenting" role="tab" data-toggle="tab">装货中</a></li>
+            <li role="presentation"><a href="#shipmented" aria-controls="shipmented" role="tab" data-toggle="tab">装货完成</a></li>
+            <li role="presentation"><a href="#revocation" aria-controls="revocation" role="tab" data-toggle="tab">撤销</a></li>
+            <li role="presentation"><a href="#pastdue" aria-controls="pastdue" role="tab" data-toggle="tab">过期</a></li>
+            <li role="presentation"><a href="#excp" aria-controls="excp" role="tab" data-toggle="tab">异常</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content pull-left" style="width: 65%">
+            <div role="tabpanel" class="tab-pane active" id="published">
+                <article>
+                    <h1>问: 发布中可以管理哪些信息？</h1>
+                    <p>答: 所有发布成功的货源都会进入到该页面， 包括带信息费的以及不带信息费的货源。</p>
+                </article>
+                <article>
+                    <h1>问: 如何设置成交？</h1>
+                    <p>答: 带信息费的货源不能直接设置成交，需要走完信息费支付流程，不带信息费的货源仍可以直接操作设置成交。设置完成交后，此信息将不会再被其他用户看到，避免无效电话骚扰。</p>
+                </article>
+                <article>
+                    <h1>问: 撤销和成交的区别是什么？</h1>
+                    <p>答: 设为成交后，该货源信息就不能重新发布了，撤销后则可以编辑再发布。</p>
+                </article>
+                <article>
+                    <h1>问: 如何撤销货源信息？</h1>
+                    <p>答: 只有在【我的货源】发布中标签下的货源可以进行撤销，点击货源下方的【撤销信息】按钮即可。</p>
+                </article>
+                <article>
+                    <h1>问: 实名认证后才能发货吗？</h1>
+                    <p>答: 特运通采用实名认证制，完成身份照片认证后才能使用发货功能，这样能提高个人信用，获得车主信赖，更快达成交易。</p>
+                </article>
+                <article>
+                    <h1>问: 发布中可以管理哪些信息？</h1>
+                    <p>答: 所有发布成功的货源都会进入到该页面，包括带信息费的以及不带信息费的货源。</p>
+                </article>
+
+            </div>
+            <div role="tabpanel" class="tab-pane " id="agreeing">
+                <article>
+                    <h1>问: 什么是待同意货源？</h1>
+                    <p>答: 当有车主在线支付了信息费，信息费进入到特运通平台后，您发布的货源会自动转入到待同意标签下。此时该货源仍在找货列表可以被其他用户看到，也可以再被其他车主支付。</p>
+                </article>
+                <article>
+                    <h1>问: 如何处理【待同意】的货源？</h1>
+                    <p>答: 若支付的车主可以满足您的装货要求，您可以点击【同意装货】，若不符合您的要求，可以选择【拒绝装货】</p>
+                </article>
+                <article>
+                    <h1>问: 有多个车主支付了我的货源，怎么处理？</h1>
+                    <p>答: 您可以进入货源详情进行查看，若您对其中一个车主操作了【同意装货】，其他车主支付的信息费会自动退回。</p>
+                </article>
+            </div>
+            <div role="tabpanel" class="tab-pane " id="unagree">
+                <article>
+                    <h1>问: 什么是拒绝货源？</h1>
+                    <p>答: 由于发布的货源不符合平台的要求或是不真实的物件，所以被拒绝。</p>
+                </article>
+            </div>
+            <div role="tabpanel" class="tab-pane " id="shipmenting">
+                <article>
+                    <h1>问: 什么是装货中的货源？</h1>
+                    <p>答:【同意装货】后，货源会自动转入到【装货中】标签下。该标签下的货源不会再被其他用户看到。</p>
+                </article>
+                <article>
+                    <h1>问: 如何处理【装货中】的货源？</h1>
+                    <p>答: 此状态下的货源需等待车主方装货完成后，该状态下的货源会自动到【装货完成/线下成交】中。您无需做任何操作。</p>
+                </article>
+                <article>
+                    <h1>问: 若【装货中】发生问题，怎么处理？</h1>
+                    <p>答: 若在装货过程中发现车主问题，可以拨打客服电话，由客服进行处理。</p>
+                </article>
+            </div>
+            <div role="tabpanel" class="tab-pane " id="shipmented">
+                <article>
+                    <h1>问:【装货完成】标签下是怎样的货源？</h1>
+                    <p>答: 有在线信息费的货源，待车主完成装货后，信息会自动进入到该页面，状态显示为“装货完成”。</p>
+                </article>
+                <article>
+                    <h1>问:【装货完成】货源还可以重新发布么？</h1>
+                    <p>答: 不可以。该页面下的货源都是已成交的信息，不能再做任何操作，也不能再进行重发。</p>
+                </article>
+
+            </div>
+            <div role="tabpanel" class="tab-pane " id="revocation">
+                <article>
+                    <h1>问: 什么是已撤销的货源？</h1>
+                    <p>答: 在【发布中】点击了【撤销货源】按钮后，信息会进入到该标签下。</p>
+                </article>
+                <article>
+                    <h1>问:【已撤销】的货源想重新发布怎么办？</h1>
+                    <p>答: 点击【编辑再发布】或【直接发布】，货源会被重新发布。</p>
+                </article>
+
+            </div>
+            <div role="tabpanel" class="tab-pane " id="pastdue">
+                <article>
+                    <h1>问: 什么是已过期的货源？</h1>
+                    <p>答: 在【发布中】和【待同意】标签下的货源，当天若未进行任何操作，当天零点后，信息会进入到【已过期】。</p>
+                </article>
+                <article>
+                    <h1>问:【已过期】的货源想重新发布怎么办？</h1>
+                    <p>答: 点击【编辑再发布】或【直接发布】，货源会被重新发布。</p>
+                </article>
+            </div>
+            <div role="tabpanel" class="tab-pane " id="excp">
+                <article>
+                    <h1>问: 什么是异常的货源？</h1>
+                    <p>答: 在【装货中】，点击【异常上报】按钮提交成功后，货源会进入到该标签下。若车主方进行了异常上报，货源也会进入到该标签下。</p>
+                </article>
+                <article>
+                    <h1>问:【异常】货源如何操作</h1>
+                    <p>答: 进入该页面的货源需等待客服处理，处理后会通知您并将处理结果显示在货源详情页面。可以通过该列表进入货源详情进行查看。</p>
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+</article>
+</body>
+<script src="/css/js/jquery-3.2.1.js"></script>
+<script src="/css/js/bootstrap.min.js"></script>
+
+
+</html>
